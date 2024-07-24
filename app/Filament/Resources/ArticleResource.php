@@ -38,6 +38,9 @@ class ArticleResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('title')
                     ->searchable(),
+                Tables\Columns\TextColumn::make('user.name')
+                    ->label('Author')
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -49,9 +52,6 @@ class ArticleResource extends Resource
             ->actions([
                 Tables\Actions\EditAction::make()->authorize(fn (Article $record) => auth()->user()->can('update', $record)),
                 Tables\Actions\DeleteAction::make()->authorize(fn (Article $record) => auth()->user()->can('delete', $record)),
-            ])
-            ->bulkActions([
-                Tables\Actions\DeleteBulkAction::make(),
             ]);
 
     }
@@ -68,6 +68,7 @@ class ArticleResource extends Resource
         return [
             'index' => Pages\ListArticles::route('/'),
             'create' => Pages\CreateArticle::route('/create'),
+            'view' => Pages\ViewArticle::route('/{record}'),
             'edit' => Pages\EditArticle::route('/{record}/edit'),
         ];
     }
