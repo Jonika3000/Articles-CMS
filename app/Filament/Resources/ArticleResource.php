@@ -38,6 +38,10 @@ class ArticleResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('title')
                     ->searchable(),
+                Tables\Columns\TextColumn::make('body')
+                    ->label('Content')
+                    ->searchable()
+                    ->limit(50),
                 Tables\Columns\TextColumn::make('user.name')
                     ->label('Author')
                     ->searchable(),
