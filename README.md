@@ -15,8 +15,8 @@ Admin Interface: Use Filament for a user-friendly admin panel.
 * GET api/article - List all articles
 * GET api/article/show/{id} - Get a specific article
 * POST api/article - Create a new article (auth only)
-* PUT /article/{id} - Update an existing article (auth as author only)
-* DELETE /article/{id} - Delete an article (auth as author only)
+* PUT /article/{id} - Update an existing article (auth as article author only)
+* DELETE /article/{id} - Delete an article (auth as article author only)
 
 ## Requirements
 
