@@ -19,11 +19,18 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::prefix('/article')->
-    group(function (){
-    Route::get('/', [ArticleController::class, 'index'])-> name('article_all');
-    Route::post('/', [ArticleController::class, 'store'])-> name('article_store');
-    Route::delete('/{id}', [ArticleController::class, 'destroy'])-> name('article_destroy');
-    Route::get('/show/{id}', [ArticleController::class, 'show'])-> name('article_details');
-    Route::put('/{id}', [ArticleController::class, 'update'])->name('articles_update');
+Route::prefix('/article')->group(function () {
+    Route::get('/', [ArticleController::class, 'index'])->name('article_all');
+    Route::post('/', [ArticleController::class, 'store'])->name('article_store');
+    Route::get('/show/{id}', [ArticleController::class, 'show'])->name('article_details');
+
+    Route::middleware(['auth'])->group(function () {
+        Route::put('/{id}', [ArticleController::class, 'update'])
+            ->name('articles_update')
+            ->middleware(['check.article.author']);
+
+        Route::delete('/{id}', [ArticleController::class, 'destroy'])
+            ->name('article_destroy')
+            ->middleware(['check.article.author']);
+    });
 });
