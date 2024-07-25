@@ -37,7 +37,8 @@ class ArticleResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('title')
-                    ->searchable(),
+                    ->searchable()
+                    ->limit(20),
                 Tables\Columns\TextColumn::make('body')
                     ->label('Content')
                     ->searchable()
