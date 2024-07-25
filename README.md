@@ -22,7 +22,7 @@ Admin Interface: Use Filament for a user-friendly admin panel.
 
 * PHP >= 8.1
 * Composer
-* MySQL or any supported database
+* PostgreSQL or any supported database
 
 ## Technology Stack
 
